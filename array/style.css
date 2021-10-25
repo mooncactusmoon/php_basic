@@ -1,0 +1,22 @@
+h1{
+    text-align: center;
+    color: rgb(110, 110, 173);
+}
+.ball{
+    text-align: center;
+    background: lightgreen;
+    border-radius: 50%;
+    width: 16px;
+    padding: 16px;
+    display: inline-block;
+    margin: 5px;
+}
+.ball2{
+    text-align: center;
+    background: rgb(255, 94, 73);
+    border-radius: 50%;
+    width: 16px;
+    padding: 16px;
+    display: inline-block;
+    margin: 5px;
+}
