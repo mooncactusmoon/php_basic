@@ -21,7 +21,12 @@
     echo "<br>間隔".$gapDays."天";
     ?>
     <hr>
-    <h1></h1>
+    <h1>計算距離自己下一次生日還有幾天</h1>
+    <?php
+    date_default_timezone_set('Asia/Taipei');
+    $gapDays=(strtotime('2022-10-25')-strtotime('2021-10-25'))/(24*60*60);
+    echo "生日還有".$gapDays."天";
+    ?>
     <h1></h1>
     <h1></h1>
     <h1></h1>
