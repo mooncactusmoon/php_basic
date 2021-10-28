@@ -25,6 +25,7 @@
 <body>
     <h1>線上月曆製作</h1>
     <?php
+    date_default_timezone_set('Asia/Taipei');
     //寫死的方法
     echo "<table>";
     echo "<tr>";
@@ -56,9 +57,13 @@
     echo "<hr>";
     ?>
     <?php
-    $firstDay = date("Y-m-01");
+    date_default_timezone_set('Asia/Taipei');
+    $firstDay = date("Y-11-01");
     $month = date('m');
     $firstWeekfirstDay = date("w", strtotime($firstDay));
+    // $day=[31,28,31,30,31,30,31,31,30,31,30,31];
+
+
     echo "firstday" . $firstDay;
     echo "<br>";
     echo "month" . $month;
@@ -66,28 +71,37 @@
     echo "firstweekfirstday" . $firstWeekfirstDay;
     echo "<table>";
     echo "<tr>";
-    echo "<td>日</td>";    echo "<td>一</td>";
-    echo "<td>二</td>";    echo "<td>三</td>";
-    echo "<td>四</td>";    echo "<td>五</td>";
+    echo "<td>日</td>";
+    echo "<td>一</td>";
+    echo "<td>二</td>";
+    echo "<td>三</td>";
+    echo "<td>四</td>";
+    echo "<td>五</td>";
     echo "<td>六</td>";
     echo "</tr>";
     for ($i = 0; $i < 6; $i++) {
         echo "<tr>";
         // $whitdDay= ;
         for ($j = 0; $j < 7; $j++) {
-            if (($i == 0 && $j < $firstWeekfirstDay) || ($i==$firstWeekfirstDay && $j > 0)) {
+            if (($i == 0 && $j < $firstWeekfirstDay) ) {
                 echo "<td>";
                 echo "&nbsp;";
                 echo "</td>";
             } else {
                 echo "<td>";
-                echo $i*7+$j+1-$firstWeekfirstDay;
+                if (($i * 7 + $j + 1 - $firstWeekfirstDay) > 31) {
+                    echo "&nbsp;";
+                } else {
+                    echo $i * 7 + $j + 1 - $firstWeekfirstDay;
+                }
                 echo "</td>";
             }
         }
         echo "</tr>";
     }
     echo "</table>";
+    echo "<hr>";
+    echo date('w', strtotime("2021-10-1"));
     ?>
 
 </body>
