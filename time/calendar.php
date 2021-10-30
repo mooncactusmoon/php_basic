@@ -119,6 +119,8 @@
         $firstDay = date("Y-m-01");
         $month = date('m');
         $firstWeekfirstDay = date("w", strtotime($firstDay));
+        $year= date("Y");
+        echo $year . "年";
     
     
     //31天的有:1.3.5.7.8.10.12
@@ -158,11 +160,20 @@
                         echo $i * 7 + $j + 1 - $firstWeekfirstDay;
                     }
                 }else{
-                    if (($i * 7 + $j + 1 - $firstWeekfirstDay) > 28) {
-                        echo "&nbsp;";
-                    } else {
-                        echo $i * 7 + $j + 1 - $firstWeekfirstDay;
-                }
+                    if((($year % 4 == 0) && ($year % 100 !=0)) || ($year % 400 ==0)){
+                        if (($i * 7 + $j + 1 - $firstWeekfirstDay) > 29) {
+                            echo "&nbsp;";
+                        } else {
+                            echo $i * 7 + $j + 1 - $firstWeekfirstDay;
+                        }
+                    } else{
+                        if (($i * 7 + $j + 1 - $firstWeekfirstDay) > 28) {
+                            echo "&nbsp;";
+                        } else {
+                            echo $i * 7 + $j + 1 - $firstWeekfirstDay;
+                        }
+                    }
+              
             }
                 echo "</td>";
             }
