@@ -58,12 +58,14 @@
     ?>
     <?php
     date_default_timezone_set('Asia/Taipei');
-    $firstDay = date("Y-11-01");
+    $firstDay = date("Y-m-01");
     $month = date('m');
     $firstWeekfirstDay = date("w", strtotime($firstDay));
     // $day=[31,28,31,30,31,30,31,31,30,31,30,31];
 
-
+//31天的有:1.3.5.7.8.10.12
+//30天的有:4.6.9.11
+//閏年2月29天。非閏年2月28天
     echo "firstday" . $firstDay;
     echo "<br>";
     echo "month" . $month;
@@ -81,9 +83,10 @@
     echo "</tr>";
     for ($i = 0; $i < 6; $i++) {
         echo "<tr>";
-        // $whitdDay= ;
+        
         for ($j = 0; $j < 7; $j++) {
             if (($i == 0 && $j < $firstWeekfirstDay) ) {
+                //第一row且$j<第一天星期不顯示數字
                 echo "<td>";
                 echo "&nbsp;";
                 echo "</td>";
