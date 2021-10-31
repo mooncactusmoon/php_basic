@@ -102,15 +102,8 @@
         }
         echo "</tr>";
     }
-    echo "</table>";
-
-
-
-
-
-    
+    echo "</table>"; 
     echo "<hr>";
-    echo date('w', strtotime("2021-10-1"));
     ?>
     <hr>
     <?php
@@ -120,21 +113,20 @@
         $month = date('m');
         $firstWeekfirstDay = date("w", strtotime($firstDay));
         $year= date("Y");
-        echo $year . "年";
     
-    
+        $a = [31,28,31,30,31,30,31,31,30,31,30,31];
     //31天的有:1.3.5.7.8.10.12
     //30天的有:4.6.9.11
     //閏年2月29天。非閏年2月28天
     echo "<table>";
     echo "<tr>";
-    echo "<td>日</td>";
+    echo "<td style='background-color:pink'>日</td>";
     echo "<td>一</td>";
     echo "<td>二</td>";
     echo "<td>三</td>";
     echo "<td>四</td>";
     echo "<td>五</td>";
-    echo "<td>六</td>";
+    echo "<td style='background-color:pink'>六</td>";
     echo "</tr>";
     for ($i = 0; $i < 6; $i++) {
         echo "<tr>";
@@ -142,11 +134,11 @@
         for ($j = 0; $j < 7; $j++) {
             if (($i == 0 && $j < $firstWeekfirstDay) ) {
                 //第一row且$j<第一天星期不顯示數字
-                echo "<td>";
+                echo "<td >";
                 echo "&nbsp;";
                 echo "</td>";
             } else {
-                echo "<td>";
+                echo "<td>";//$a[$month-1]==31;
                 if($month==1 ||$month == 3||$month ==5||$month==7 ||$month == 8||$month ==10||$month ==12){
                     if (($i * 7 + $j + 1 - $firstWeekfirstDay) > 31) {
                         echo "&nbsp;";
@@ -182,7 +174,61 @@
     }
     echo "</table>";
     ?>
-
+    <hr>
+ <?php
+    echo "試試看用陣列";
+        date_default_timezone_set('Asia/Taipei');
+        $firstDay = date("Y-m-01");
+        $month = date('m');
+        $firstWeekfirstDay = date("w", strtotime($firstDay));
+        $year= date("Y");
+    //$a為非閏年，$b為閏年
+        $a = [31,28,31,30,31,30,31,31,30,31,30,31];
+        $b = [31,29,31,30,31,30,31,31,30,31,30,31];
+        
+    //31天的有:1.3.5.7.8.10.12
+    //30天的有:4.6.9.11
+    //閏年2月29天。非閏年2月28天
+    echo "<table>";
+    echo "<tr>";
+    echo "<td style='background-color:pink'>日</td>";
+    echo "<td>一</td>";
+    echo "<td>二</td>";
+    echo "<td>三</td>";
+    echo "<td>四</td>";
+    echo "<td>五</td>";
+    echo "<td style='background-color:pink'>六</td>";
+    echo "</tr>";
+    for ($i = 0; $i < 6; $i++) {
+        echo "<tr>";    
+        for ($j = 0; $j < 7; $j++) {
+            if (($i == 0 && $j < $firstWeekfirstDay) ) {
+                //第一row且$j<第一天星期不顯示數字
+                echo "<td >";
+                echo "&nbsp;";
+                echo "</td>";
+            } else {
+                echo "<td>";//$a[$month-1]==31;
+                if((($year % 4 == 0) && ($year % 100 !=0)) || ($year % 400 ==0)){
+                    if (($i * 7 + $j + 1 - $firstWeekfirstDay) > $b[$month-1]) {
+                        echo "&nbsp;";
+                    } else {
+                        echo $i * 7 + $j + 1 - $firstWeekfirstDay;
+                    }
+                } else{
+                    if (($i * 7 + $j + 1 - $firstWeekfirstDay) > $a[$month-1]) {
+                        echo "&nbsp;";
+                    } else {
+                        echo $i * 7 + $j + 1 - $firstWeekfirstDay;
+                    }
+                }
+                echo "</td>";
+            }
+        }
+        echo "</tr>";
+    }
+    echo "</table>";
+    ?>
 </body>
 
 </html>
