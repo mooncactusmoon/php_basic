@@ -11,13 +11,17 @@
             width: 500px;
             margin: auto;
             padding: 20px;
-            border: 1px solid blue;
+            /* border: 1px solid blue; */
+            border-collapse:collapse;
         }
 
         td {
             padding: 5px;
             text-align: center;
             border: 1px solid red;
+        }
+        .td0,.td6{
+            background-color: pink;
         }
     </style>
 </head>
@@ -204,11 +208,11 @@
         for ($j = 0; $j < 7; $j++) {
             if (($i == 0 && $j < $firstWeekfirstDay) ) {
                 //第一row且$j<第一天星期不顯示數字
-                echo "<td >";
+                echo "<td class='td$j'>";
                 echo "&nbsp;";
                 echo "</td>";
             } else {
-                echo "<td>";//$a[$month-1]==31;
+                echo "<td class='td$j'>";//$a[$month-1]==31;
                 if((($year % 4 == 0) && ($year % 100 !=0)) || ($year % 400 ==0)){
                     if (($i * 7 + $j + 1 - $firstWeekfirstDay) > $b[$month-1]) {
                         echo "&nbsp;";
