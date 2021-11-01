@@ -193,6 +193,11 @@
         display: inline-block;     
         text-align: center; 
     }
+    /* 笨笨假日CSS寫法 */
+    .cell0,.cell6,.cell7,.cell13,.cell14,.cell20,.cell21,.cell27,.cell28,.cell34,.cell35,.cell41,.cell42,.cell48{
+        background-color: pink;
+    }
+    
 </style>
 <div class="calendar">
 <?php
@@ -222,24 +227,56 @@ for($i=0;$i<$monthDays;$i++){
 for($i=0;$i<$lastWeekWhiteDays;$i++){
     $td[]='';
 }
-
-
-
     for ($i = 0; $i < $allCells; $i++) {
         $date=date("Y-m-").($i+1);
-        echo "<div class='cell'>";
+        echo "<div class='cell cell$i'>";
         echo $td[$i];
         if(array_key_exists($date,$specialDate)){
             echo "<br>";
             echo $specialDate[$date];
         }
         echo "</div>";
-    }
-
-    
+    }   
 ?>
 </div>
 <br><br><br>
+<?php
+    $specialDate=['2021-11-15'=>'發薪水','2021-12-25'=>'聖誕節'];
+   //echo $specialDate['2011-11-11'];
+/*     $firstDay=date("Y-m-01");
+    $month=date("m"); */
+    $firstDay=date("Y-m-01");
+    $month=date("m");
+    $firstWeekWhiteDays=date("w",strtotime($firstDay));
+    $monthDays=date("t",strtotime($firstDay));
+    $firstWeekDays=7-$firstWeekWhiteDays;
+    $weeks=ceil(($firstWeekWhiteDays+$monthDays)/7);
+    $lastWeekDays=($firstWeekWhiteDays+$monthDays)%7;
+    $lastWeekWhiteDays=7-$lastWeekDays;
+    $allCells=($weeks+1)*7;
+    //陣列中加入首列資料
+    $td=['周日','周一','周二','周三','周四','周五','周六'];
+
+    //陣列中加入月前空白;
+    for($i=0;$i<$firstWeekWhiteDays;$i++){
+        $td[]="";
+    }
+    echo "<pre>";
+print_r($td);
+echo "</pre>";
+    for($i=0;$i<$monthDays;$i++){ //決定當月有幾周
+        $td[]=($i+1);
+    }
+    echo "<pre>";
+print_r($td);
+echo "</pre>";
+   for($i=0;$i<$lastWeekWhiteDays;$i++){
+        $td[]="";
+    }
+echo "<pre>";
+print_r($td);
+echo "</pre>";
+    ?>
 </body>
 
 </html>
