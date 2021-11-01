@@ -72,22 +72,25 @@ for($i=0;$i<7;$i++){
          } else {
              echo "<div class='cell cell$j'>";
              if((($year % 4 == 0) && ($year % 100 !=0)) || ($year % 400 ==0)){
-                 if (($i * 7 + $j + 1 - $firstWeekfirstDay) > $b[$month-1]) {
+                 $days=$i * 7 + $j + 1 - $firstWeekfirstDay;
+                 //因為天數字串太長用$days代替,下面else也要在宣告一次
+                 if ($days > $b[$month-1]) {
                      echo "&nbsp;";
                  } else {
-                    $date=date("Y-m-").($i * 7 + $j + 1 - $firstWeekfirstDay);
-                     echo $i * 7 + $j + 1 - $firstWeekfirstDay;
+                    $date=date("Y-m-").$days;
+                     echo $days;
                      if(array_key_exists($date,$specialDate)){
                         echo "<br>";
                         echo $specialDate[$date];
                     }
                  }
              } else{
-                 if (($i * 7 + $j + 1 - $firstWeekfirstDay) > $a[$month-1]) {
+                $days=$i * 7 + $j + 1 - $firstWeekfirstDay;
+                 if ($days > $a[$month-1]) {
                      echo "&nbsp;";
                  } else {
-                    $date=date("Y-m-").($i * 7 + $j + 1 - $firstWeekfirstDay);
-                     echo $i * 7 + $j + 1 - $firstWeekfirstDay;
+                    $date=date("Y-m-").$days;
+                     echo $days;
                      if(array_key_exists($date,$specialDate)){
                         echo "<br>";
                         echo $specialDate[$date];
