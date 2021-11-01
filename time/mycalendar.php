@@ -42,7 +42,8 @@
 </head>
 <body>
 <?php
-$specialDate = ['2021-11-15' => '發薪水', '2021-12-25' => '聖誕節'];
+$specialDate = ['2021-11-15' => '發薪水', date('Y-12-25') => '聖誕節'];
+//紀念日每年顯示方法 date('Y-12-25')
      date_default_timezone_set('Asia/Taipei');
      $firstDay = date("Y-m-01");
      $month = date('m');
