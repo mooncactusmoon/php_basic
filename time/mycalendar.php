@@ -9,6 +9,7 @@
         *{
             box-sizing: border-box;
             text-align: center;
+            font-family: Impact,Comic Sans MS,'monospace';
         }
         .div1{
             width: 422px;
@@ -19,19 +20,29 @@
             flex-wrap: wrap;
             justify-content: start;
             align-content: start;
-            border: 1px solid blue;
+            border: 1px solid black;
             
         }
         .cell{
             width: 60px;
             height: 50px;
-            border: 1px solid red;
+            border: 1px solid black;
             display: inline-block;
+            
+        }
+        .weeks{
+            background-color: rgb(185, 243, 224);
+            font-size: 25px;
+            padding-top: 10px;
+        }
+        .cell0,.cell6{
+            background-color: rgb(255, 190, 206);
         }
     </style>
 </head>
 <body>
 <?php
+$specialDate = ['2021-11-15' => '發薪水', '2021-12-25' => '聖誕節'];
      date_default_timezone_set('Asia/Taipei');
      $firstDay = date("Y-m-01");
      $month = date('m');
@@ -46,7 +57,7 @@
  //閏年2月29天。非閏年2月28天
 echo "<div class='div1'>";
 for($i=0;$i<7;$i++){
-    echo "<div class='cell'>".$td[$i]."</div>";
+    echo "<div class='cell weeks'>".$td[$i]."</div>";
 }
  for ($i = 0; $i < 6; $i++) {
     //  echo "<div>";
@@ -55,22 +66,32 @@ for($i=0;$i<7;$i++){
          
          if (($i == 0 && $j < $firstWeekfirstDay) ) {
              //第一row且$j<第一天星期不顯示數字
-             echo "<div class='cell'>";
+             echo "<div class='cell cell$j'>";
              echo "&nbsp;";
              echo "</div>";
          } else {
-             echo "<div class='cell'>";
+             echo "<div class='cell cell$j'>";
              if((($year % 4 == 0) && ($year % 100 !=0)) || ($year % 400 ==0)){
                  if (($i * 7 + $j + 1 - $firstWeekfirstDay) > $b[$month-1]) {
                      echo "&nbsp;";
                  } else {
+                    $date=date("Y-m-").($i * 7 + $j + 1 - $firstWeekfirstDay);
                      echo $i * 7 + $j + 1 - $firstWeekfirstDay;
+                     if(array_key_exists($date,$specialDate)){
+                        echo "<br>";
+                        echo $specialDate[$date];
+                    }
                  }
              } else{
                  if (($i * 7 + $j + 1 - $firstWeekfirstDay) > $a[$month-1]) {
                      echo "&nbsp;";
                  } else {
+                    $date=date("Y-m-").($i * 7 + $j + 1 - $firstWeekfirstDay);
                      echo $i * 7 + $j + 1 - $firstWeekfirstDay;
+                     if(array_key_exists($date,$specialDate)){
+                        echo "<br>";
+                        echo $specialDate[$date];
+                    }
                  }
              }
              echo "</div>";
