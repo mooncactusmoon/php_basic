@@ -62,14 +62,16 @@
     ?> -->
     <?php
     date_default_timezone_set('Asia/Taipei');
-    $firstDay = date("Y-m-01");
-    $month = date('m');
+    $firstDay = date("Y-10-01");
+    $month = date('10');
     $firstWeekfirstDay = date("w", strtotime($firstDay));
     
 
 //31天的有:1.3.5.7.8.10.12
 //30天的有:4.6.9.11
 //閏年2月29天。非閏年2月28天
+    echo "<h3>寫死的寫法，2021/10月</h3>";
+
     echo "firstday" . $firstDay;
     echo "<br>";
     echo "month" . $month;
@@ -111,7 +113,7 @@
     ?>
     <hr>
     <?php
-    echo "自己努力寫看看";
+    echo "<h3>自己努力寫看看:活的笨笨寫法</h3>";
         date_default_timezone_set('Asia/Taipei');
         $firstDay = date("Y-m-01");
         $month = date('m');
@@ -180,7 +182,7 @@
     ?>
     <hr>
  <?php
-    echo "試試看用陣列";
+    echo "<h3>活的:試試看用陣列</h3>";
         date_default_timezone_set('Asia/Taipei');
         $firstDay = date("Y-m-01");
         $month = date('m');
