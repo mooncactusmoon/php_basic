@@ -18,7 +18,7 @@ if($bmi>=18.5 && $bmi <24){
     echo "經判斷為異常";
 }
 
-
+ 
 ?>
 <a href="index.php?bmi=<?=$bmi;?>">回首頁</a>
 </body>
