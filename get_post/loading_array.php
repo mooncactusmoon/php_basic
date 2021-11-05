@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登入檢查練習2</title>
+    <title>登入檢查練習-用陣列寫</title>
     <style>
         *{
             text-align: center;
@@ -33,28 +33,56 @@
         }
     </style>
 </head>
-
 <body>
-    <h1>登入檢查2</h1>
+    <h1>登入檢查-用陣列寫資料</h1>
     <p>傳給自己</p>
     <div>
     <br>
-    <form action="./loading_2.php" method="POST">
+    <form action="./loading_array.php" method="POST">
     <?php
+    //print_r($_POST);
+    $users=[
+        ['acc'=>'mack','pw'=>'1234'],
+        ['acc'=>'moon','pw'=>'5566'],
+        ['acc'=>'the01','pw'=>'1111'],
+        ['acc'=>'the02','pw'=>'2222'],
+    ];
+    $test=false;
     if(!empty($_POST)){
         $acc = $_POST['acc'];
         $pw = $_POST['pw'];
-        
-        if ($acc == 'moon' && $pw == '5566') {
-            echo "Loading success. :)";
+        foreach($users as $user){
+            if ($acc == $user['acc']) {
+                if($pw == $user['pw']){
+                    $test=true;
+                }else{
+                    $test=false;
+            } 
+        }
+    }
+    if($test){
+        echo "Login success. :>";
             echo "<br><br>";
-            echo "Hello," . $acc;
-        } else {
-            echo "Loading false. :<";
+            echo "Hello,".$acc;
+    }else {
+            echo "Login false. :(";
             echo "<br><br>";
             echo "try again ?";
         }
     }
+    //     foreach($users as $user){
+
+    //         if ($acc == $user['acc'] && $pw == $user['pw']) {
+    //             echo "Login success. :)";
+    //             echo "<br><br>";
+    //             echo "Hello," . $acc;
+    //         } else {
+    //             echo "Login false. :<";
+    //             echo "<br><br>";
+    //             echo "try again ?";
+    //         }
+    //     }
+    // }
     ?>
         <table border="1px">
             <tr>
