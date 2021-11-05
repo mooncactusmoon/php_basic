@@ -43,14 +43,7 @@
     </style>
 </head>
 <body>
-    <h1>Perpetual calendar</h1>
-    <h2><?=date("Y");?>/<?=date("m");?></h3>
 
-<div>
-    <a href="index.php?month=$">Last month</a>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="index.php?month=$">Next month</a>
-</div>
 <?php
     $specialDate = [
         '2021-11-15' => '發薪水', 
@@ -69,7 +62,11 @@
 
 
      $month = date('m');
-     $firstWeekfirstDay = date("w", strtotime($firstDay));
+    //empty(1)=>false  !empty(1)=>!false=>true
+    //empty(0)=>true  !empty(0)=>!true=>false
+
+
+    $firstWeekfirstDay = date("w", strtotime($firstDay));
      $year= date("Y");
   //$a為非閏年，$b為閏年
      $a = [31,28,31,30,31,30,31,31,30,31,30,31];
@@ -78,7 +75,18 @@
  //31天的有:1.3.5.7.8.10.12
  //30天的有:4.6.9.11
  //閏年2月29天。非閏年2月28天
+?>
+<div>
+        <h1>Perpetual calendar</h1>
+    <h2><?=date("Y");?>/<?=$month;?></h3>
+    <a href="index.php?year=<?=$lastyear;?>month=<?=$lastmonth;?>">Last month</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="index.php?year=<?=$nextyear;?>month=$<?=$nextmonth;?>">Next month</a>
+</div>
+<?php
+
 echo "<div class='div1'>";
+
 for($i=0;$i<7;$i++){
     echo "<div class='cell weeks'>".$td[$i]."</div>";
 }
