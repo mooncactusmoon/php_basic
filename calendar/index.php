@@ -46,15 +46,15 @@
 
 <?php
     $specialDate = [
-        '2021-11-15' => '發薪水', 
-        date('Y-01-01') => '元旦',
-        date('Y-02-14') => '西洋情人節',
-        date('Y-02-28') => '和平紀念日',
-        date('Y-10-10') => '雙十節',
-        date('Y-10-31') => '萬聖節',
-        date('Y-12-25') => '聖誕節',
+        '1-1' => '元旦',
+        '2-14' => '西洋情人節',
+        '2-28' => '和平紀念日',
+        '10-10' => '雙十節',
+        '10-31' => '萬聖節',
+        '12-25' => '聖誕節',
     ];
   //紀念日每年顯示方法 date('Y-12-25')
+
      date_default_timezone_set('Asia/Taipei');
      
     //   $year= date("Y");
@@ -135,7 +135,8 @@ for($i=0;$i<7;$i++){
                  if ($days > $b[$month-1]) {
                      echo "&nbsp;";
                  } else {
-                    $date=date("$year-$month-").$days;
+                     $date=date("$month-").$days;
+                    // $date=date("$year-$month-$days");
                      echo $days;
                      if(array_key_exists($date,$specialDate)){
                         echo "<br>";
@@ -148,7 +149,8 @@ for($i=0;$i<7;$i++){
                  if ($days > $a[$month-1]) {
                      echo "&nbsp;";
                  } else {
-                    $date=date("$year-$month-").$days;
+                     $date=date("$month-").$days;
+                    // $date=date("$year-$month-$days");
                      echo $days;
                      if(array_key_exists($date,$specialDate)){
                         echo "<br>";
