@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,8 +22,7 @@
             width: 300px;
             height: 250px;
             background-color: #99CCFF;
-            box-shadow:3px 3px 5px 6px #cccccc;
-            
+            box-shadow:3px 3px 5px 6px #cccccc;   
         }
         input{
             width: 150px;
@@ -59,8 +57,6 @@
             <input type="submit" value="Sumbit" class="btn">
             <input type="reset" value="Cancel" class="btn">
         </form>
-        
-    </div>
+        </div>
     </body>
-    
     </html>
