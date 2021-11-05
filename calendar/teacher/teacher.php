@@ -47,7 +47,7 @@
    //echo $specialDate['2011-11-11'];
 /*     $firstDay=date("Y-m-01");
     $month=date("m"); */
-    $firstDay=date("Y-m-01");
+
 
     //直接訪問本頁不帶值
     //訪問本頁帶月份值
@@ -58,61 +58,35 @@
 
     if(isset($_GET['month'])){
         $month=$_GET['month'];
-        $year=$_GET['year'];  
-        
-        if($month>0 && $month<13){
-          
-            $lastmonth=$month-1;
-            $lastyear=$year;
-
-            $nextmonth=$month+1;
-            $nextyear=$year;
-
-            if($_GET['month']==1){
-                $lastmonth=12;
-                $lastyear=$year-1;
-
-                $nextmonth=$month+1;
-                $nextyear=$year;
-            }else if($_GET['month']==12){
-                $lastmonth=$month-1;
-                $lastyear=$year;
-
-                $nextmonth=1;
-                $nextyear=$year+1;
-            }
-        }elseif($_GET['month']<=0){
-            $month=12;
-            $year=date("Y")-1;
-        }else{
-            $month=1;
-            $year=date("Y")+1;
-
-        }
-
+        $year=$_GET['year'];
     }else{
-        //當前未帶入參數
         $month=date("m");
         $year=date("Y");
+    }
+    
+    $lastmonth=$month-1;
+    $lastyear=$year;
+
+    $nextmonth=$month+1;
+    $nextyear=$year;
+    
+    if($month==1){
+        $lastmonth=12;
+        $lastyear=$year-1;
+
+        $nextmonth=$month+1;
+        $nextyear=$year;
+
+    }else if($month==12){
 
         $lastmonth=$month-1;
         $lastyear=$year;
-        $nextmonth=$month+1;
-        $nextyear=$year;
-            if($month==1){
-                $lastmonth=12;
-                $lastyear=$year-1;
-                $nextmonth=$month+1;
-                $nextyear=$year;
-            }else if($month==12){
-                $lastmonth=$month-1;
-                $lastyear=$year;
-                $nextmonth=1;
-                $nextyear=$year+1;
-            }
+
+        $nextmonth=1;
+        $nextyear=$year+1;
     }
-    
-    
+
+    $firstDay=date("$year-$month-01");
     $firstWeekWhiteDays=date("w",strtotime($firstDay));
     $monthDays=date("t",strtotime($firstDay));
     $firstWeekDays=7-$firstWeekWhiteDays;
@@ -138,9 +112,7 @@
 
 <h3><?=$year;?>年<?=$month;?>月</h3>
  <div>
-
      <a href="teacher.php?year=<?=$lastyear;?>&month=<?=$lastmonth;?>">上一個月</a>
-
      <a href="teacher.php?year=<?=$nextyear;?>&month=<?=$nextmonth;?>">下一個月</a>
 </div>   
 <div class="calendar">
@@ -158,13 +130,13 @@ foreach($headers as $header){
 //月曆body的地方
 for($i=0;$i<$allCells;$i++){
     if(is_numeric($td[$i])){
-        $date=date("Y-m-").$td[$i];
+        $date=date("$year-$month-").$td[$i];
         $w=date("w",strtotime($date));
     }
     
     if($w==0 || $w==6){
 
-        echo "<div class='dayoff cell'>";
+        echo "<div class='cell'>";
     }else{
 
         echo "<div class='cell'>";

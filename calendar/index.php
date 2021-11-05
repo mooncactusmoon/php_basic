@@ -56,18 +56,47 @@
     ];
   //紀念日每年顯示方法 date('Y-12-25')
      date_default_timezone_set('Asia/Taipei');
-     $firstDay = date("Y-m-01");
+     
+    //   $year= date("Y");
      //直接訪問本頁不帶值
      //訪問本業帶月份值
 
-
-     $month = date('m');
+    //  $month = date('m');
     //empty(1)=>false  !empty(1)=>!false=>true
     //empty(0)=>true  !empty(0)=>!true=>false
+    if(isset($_GET['month'])){
+        $month=$_GET['month'];
+        $year=$_GET['year'];
+    }else{
+        $month=date("m");
+        $year=date("Y");
+    }
+    
+    $lastmonth=$month-1;
+    $lastyear=$year;
 
+    $nextmonth=$month+1;
+    $nextyear=$year;
+    
+    if($month==1){
+        $lastmonth=12;
+        $lastyear=$year-1;
 
+        $nextmonth=$month+1;
+        $nextyear=$year;
+
+    }else if($month==12){
+
+        $lastmonth=$month-1;
+        $lastyear=$year;
+
+        $nextmonth=1;
+        $nextyear=$year+1;
+    }
+
+    $firstDay = date("$year-$month-01");
     $firstWeekfirstDay = date("w", strtotime($firstDay));
-     $year= date("Y");
+    
   //$a為非閏年，$b為閏年
      $a = [31,28,31,30,31,30,31,31,30,31,30,31];
      $b = [31,29,31,30,31,30,31,31,30,31,30,31];
@@ -78,10 +107,10 @@
 ?>
 <div>
         <h1>Perpetual calendar</h1>
-    <h2><?=date("Y");?>/<?=$month;?></h3>
-    <a href="index.php?year=<?=$lastyear;?>month=<?=$lastmonth;?>">Last month</a>
+    <h2><?=$year;?>/<?=$month;?></h3>
+    <a href="index.php?year=<?=$lastyear;?>&month=<?=$lastmonth;?>">Last month</a>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="index.php?year=<?=$nextyear;?>month=$<?=$nextmonth;?>">Next month</a>
+    <a href="index.php?year=<?=$nextyear;?>&month=<?=$nextmonth;?>">Next month</a>
 </div>
 <?php
 
@@ -106,7 +135,7 @@ for($i=0;$i<7;$i++){
                  if ($days > $b[$month-1]) {
                      echo "&nbsp;";
                  } else {
-                    $date=date("Y-m-").$days;
+                    $date=date("$year-$month-").$days;
                      echo $days;
                      if(array_key_exists($date,$specialDate)){
                         echo "<br>";
@@ -119,7 +148,7 @@ for($i=0;$i<7;$i++){
                  if ($days > $a[$month-1]) {
                      echo "&nbsp;";
                  } else {
-                    $date=date("Y-m-").$days;
+                    $date=date("$year-$month-").$days;
                      echo $days;
                      if(array_key_exists($date,$specialDate)){
                         echo "<br>";
