@@ -70,19 +70,6 @@
             echo "try again ?";
         }
     }
-    //     foreach($users as $user){
-
-    //         if ($acc == $user['acc'] && $pw == $user['pw']) {
-    //             echo "Login success. :)";
-    //             echo "<br><br>";
-    //             echo "Hello," . $acc;
-    //         } else {
-    //             echo "Login false. :<";
-    //             echo "<br><br>";
-    //             echo "try again ?";
-    //         }
-    //     }
-    // }
     ?>
         <table border="1px">
             <tr>
