@@ -43,7 +43,7 @@
     </style>
 </head>
 <body>
-
+<?php session_start(); ?>
 <?php
     $specialDate = [
         '1-1' => '元旦',
@@ -105,6 +105,7 @@
  //30天的有:4.6.9.11
  //閏年2月29天。非閏年2月28天
 ?>
+    <?php echo $_SESSION['name'];?>
 <div>
         <h1>Perpetual calendar</h1>
     <h2><?=$year;?>/<?=$month;?></h3>
