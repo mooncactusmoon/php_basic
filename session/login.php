@@ -1,3 +1,11 @@
+<?php
+if(isset($_COOKIE['user'])){
+    header('location:mem_center.php');
+    //header特性: 執行之前不能有任何的輸出!!!
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
