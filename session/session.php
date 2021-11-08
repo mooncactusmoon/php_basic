@@ -2,7 +2,7 @@
 session_start();
 $_SESSION['name']='Moon';
 
-echo $_SESSUON['name'];
+echo $_SESSION['name'];
 
 $_SESSION['students']=['A','B','C'];
 ?>
