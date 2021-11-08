@@ -8,11 +8,12 @@
 </head>
 <body>
     <?php
+    session_start();
     $acc = 'moon';
     $pw = '5566';       
     if ($acc == $_POST['acc'] && $pw == $_POST['pw']) {
-        // $_SESSION['user']=$_POST['acc'];
-        setcookie('user',$_POST['acc'],time()+3600);
+        $_SESSION['user']=$_POST['acc'];
+        // setcookie('user',$_POST['acc'],time()+3600);
         header("location:mem_center.php");
     }else{
         header("location:login.php?status=err");
